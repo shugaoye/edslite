@@ -135,4 +135,4 @@ dependencies {
 
 
 apply from: 'build-full.gradle'
-apply from: 'build-local.gradle'
+// apply from: 'build-local.gradle'

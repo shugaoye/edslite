@@ -88,9 +88,15 @@ JNIEXPORT jlong JNICALL Java_com_sovworks_eds_fs_util_FDRandomAccessIO_getSize(
 	jclass cls, 
 	jint fd)
 {
+#if __ANDROID_API__ >= 21
 	struct stat64 buf;
 	if(fstat64 (fd, &buf))
 		return -1;
+#else
+    struct stat buf;
+    if(fstat (fd, &buf))
+        return -1;
+#endif /* __ANDROID_API__ >= 21 */
 	return buf.st_size;
 }
 
